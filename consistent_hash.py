@@ -5,6 +5,11 @@ from server_config import NODES
 import pprint
 
 
+
+'''
+    implement consistent hash with vnodes for a factor of 2
+    did not implement with data replication becuase running out of time.
+'''
 class ConsistentHash():
     def __init__(self, physical_ring, vnodes_factor=2):
         self.num_replicas = vnodes_factor
