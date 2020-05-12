@@ -85,17 +85,17 @@ def process(udp_clients):
     print(
         f"Number of Users={len(USERS)}\nNumber of Users Cached={len(hash_codes)}")
 
-    # for hc in hash_codes:
-    #     # print(hc)
-    #     data_bytes, key = serialize_GET(hc)
-    #     response = get(key, data_bytes, client_ring)
-    #     # print(response)
+    for hc in hash_codes:
+        # print(hc)
+        data_bytes, key = serialize_GET(hc)
+        response = get(key, data_bytes, client_ring)
+        # print(response)
 
-    # for hc in hash_codes:
-    #     data_bytes, key = serialize_DELETE(hc)
-    #     print("keys from DELETE OPERATAIONS:", data_bytes, key)
-    #     response = delete(key, data_bytes, client_ring)
-    #     print(response)
+    for hc in hash_codes:
+        data_bytes, key = serialize_DELETE(hc)
+        print("keys from DELETE OPERATAIONS:", data_bytes, key)
+        response = delete(key, data_bytes, client_ring)
+        print(response)
 
 
 if __name__ == "__main__":
