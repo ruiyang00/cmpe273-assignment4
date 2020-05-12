@@ -21,16 +21,19 @@ class NodeRing():
             node_index = key % len(self.nodes)
 
         else:
-            node_index = self.hash_function.get_node(key_hex, self.nodes)
+
+            # uncooment this for rendezvous hash
+            # node_index = self.hash_function.get_node(key_hex, self.nodes)
+
+
+            # uncooment this for consistent hash
+            node_index = self.hash_function.get_node(key_hex)
 
         return self.nodes[node_index]
 
     def apply_new_hash(self, hash):
-     
 
         self.hash_function = hash
-
-
 
 
 # def test():

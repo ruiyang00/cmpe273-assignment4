@@ -9,7 +9,8 @@ from sample_data import USERS
 from server_config import NODES
 from pickle_hash import serialize_GET, serialize_PUT, serialize_DELETE
 from lru_cache import lru_cache
-from rendezvous import RendezvousHash
+from rendezvous_hash import RendezvousHash
+from consistent_hash import ConsistentHash
 
 
 BUFFER_SIZE = 1024
@@ -64,12 +65,15 @@ def process(udp_clients):
     hash_codes = set()
     client_ring = NodeRing(udp_client)
 
-    weights = [5, 5, 5, 5]
-    seeds = ["node1", "serve2", "salt1", "clasuter"]
-    
-    instance_rendezvous = RendezvousHash(weights, seeds)
+    # these couple lines are for the rendezvous hash
+    # weights = [5, 5, 5, 5]
+    # seeds = ["node1", "serve2", "salt1", "clasuter"]
+    # instance_rendezvous = RendezvousHash(weights, seeds)
 
-    client_ring.apply_new_hash(instance_rendezvous)
+    # uncomment/comment this to apply consistent hash
+    instance_consistent_hash = ConsistentHash(NODES)
+
+    client_ring.apply_new_hash(instance_consistent_hash)
 
     # PUT all users.
     for u in USERS:
